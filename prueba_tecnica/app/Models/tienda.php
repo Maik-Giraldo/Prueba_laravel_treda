@@ -9,7 +9,7 @@ class tienda extends Model
 {
     use HasFactory;
 
-    protected $table = 'producto';
+    protected $table = 'tienda';
 
     protected $oprimaryKey = 'id';
     protected $fillable = [

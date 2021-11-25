@@ -18,32 +18,34 @@ class tiendaController extends Controller
         return view('tiendas');
     }
 
-    public function create(Request $request){
+    public function create(Request $req){
+        $request = $req->all();
         tienda::create([
-            'nombre' => $request->nombre,
-            'fecha_apertura' => $request->fecha_apertura
+            'nombre' => $request["nombre"],
+            'fecha_apertura' => $request["fecha_apertura"]
         ]);
 
-        return redirect('/');
+        return array('added'=>true);
     }
    
-    public function viewStore($id){
+    public function viewStore(){
         $tiendas = tienda::all();
 
         return array('stores'=>$tiendas);
     }
 
-    public function deleteStore($id){
+    public function deleteStore(Request $req){
         try {
-            $tiendas = tienda::select()->where('id', "=", $id)->delete();
+            $request = $req->all();
+            $tiendas = tienda::select()->where('id', "=", $request["id"])->delete();
         } catch (\Throwable $th) {
             return array('delete'=>false);
-        }
+        };
         
        return array('delete'=>true);
     }
 
-    public function editarPelicula(Request $req, $id){
+    public function updateStore(Request $req){
         try {
             $request = $req->all();
             $tiendas = DB::table('tienda')

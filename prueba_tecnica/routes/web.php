@@ -21,3 +21,7 @@ Route::get('/productos', [App\Http\Controllers\productoController::class, 'index
 
 //Vista tiendas
 Route::get('/tiendas', [App\Http\Controllers\tiendaController::class, 'index']);
+Route::delete('/tiendas', [App\Http\Controllers\tiendaController::class, 'deleteStore']);
+Route::put('/tiendas', [App\Http\Controllers\tiendaController::class, 'updateStore']);
+Route::get('/tiendas/get', [App\Http\Controllers\tiendaController::class, 'viewStore']);
+Route::post('/tiendas', [App\Http\Controllers\tiendaController::class, 'create']);
